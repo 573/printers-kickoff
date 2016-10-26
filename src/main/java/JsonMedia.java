@@ -11,8 +11,10 @@ class JsonMedia implements Media {
         this("book");
     }
 
-    JsonMedia(String head) {
-        this(Json.createObjectBuilder().add("head", head));
+    JsonMedia(String level) {
+        // TBH IDK in which use cases that "level" is really needed or when the .add("level", level)) and then as well the this
+        // (String) call in the default constructor can be left off - semantically
+        this(Json.createObjectBuilder().add("level", level));
     }
 
     JsonMedia(JsonObjectBuilder bdr) {
@@ -23,6 +25,15 @@ class JsonMedia implements Media {
     public Media with(String name, String value) {
         return new JsonMedia(
                 this.builder.add(name, value)
+        );
+    }
+
+    @Override
+    public Media with(String name, Space value) {
+        JsonMedia spaceJson = new JsonMedia("space");
+        value.print(spaceJson);
+        return new JsonMedia(
+                this.builder.add(name, spaceJson.json())
         );
     }
 

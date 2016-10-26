@@ -8,14 +8,23 @@ import org.xembly.ImpossibleModificationException;
 public class App {
     public static void main(String[] args) throws ImpossibleModificationException {
         Logger log = LoggerFactory.getLogger(App.class);
-        Book book = new Book();
 
-        JsonMedia media = new JsonMedia("book");
-        book.print(media);
-        log.info(media.json().toString());
+        Space space = Space.create().withKey("118");
 
-        XmlMedia media2 = new XmlMedia("book2");
-        book.print(media2);
-        log.info(media2.xml());
+        JsonMedia bookJson = new JsonMedia("book");
+        Book.create()
+                .withSpace(space)
+                .withIsbn("0735619654")
+                .withTitle("Object Thinking")
+                .print(bookJson);
+        log.info(bookJson.json().toString());
+
+        XmlMedia bookXml = new XmlMedia("book");
+        Book.create()
+                .withSpace(space)
+                .withIsbn("0735619654")
+                .withTitle("Object Thinking")
+                .print(bookXml);
+        log.info(bookXml.xml());
     }
 }
