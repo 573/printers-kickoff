@@ -41,10 +41,16 @@
     <dependencies>
 
         <dependency>
+            <groupId>com.jcabi</groupId>
+            <artifactId>jcabi-xml</artifactId>
+            <version>0.17.2</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.jcabi.incubator</groupId>
             <artifactId>xembly</artifactId>
             <classifier>jar-with-dependencies</classifier>
-            <version>RELEASE</version>
+            <version>0.22</version>
         </dependency>
 
         <dependency>

@@ -1,3 +1,4 @@
+import com.jcabi.xml.XMLDocument;
 import org.xembly.Directives;
 import org.xembly.ImpossibleModificationException;
 import org.xembly.Xembler;
@@ -26,20 +27,15 @@ public class XmlMedia implements Media {
                 this.builderDirectives.add(name).set(value).up());
     }
 
-    /**
-     * The ouput is still not correctly formatted - possibly to do with .add(head) - but you get the point
-     * @param name
-     * @param value
-     * @return
-     */
-    @Deprecated
     @Override
     public Media with(String name, Space value) {
-        XmlMedia spaceXml = new XmlMedia("space");
+        XmlMedia spaceXml = new XmlMedia(new Directives());
         value.print(spaceXml);
         try {
             return new XmlMedia(
-                    this.builderDirectives.add(name).set(spaceXml.xml()).up());
+                    this.builderDirectives.add(name).append(
+                            Directives.copyOf(
+                                    new XMLDocument(spaceXml.xml()).node())));
         } catch (ImpossibleModificationException e) {
             throw new RuntimeException(e);
         }
