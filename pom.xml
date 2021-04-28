@@ -43,7 +43,7 @@
         <dependency>
             <groupId>com.jcabi</groupId>
             <artifactId>jcabi-xml</artifactId>
-            <version>0.17.2</version>
+            <version>0.19</version>
         </dependency>
 
         <dependency>
